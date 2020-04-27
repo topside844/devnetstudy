@@ -10,12 +10,15 @@ deviceJSON = '{"Version": "15.6", "locationN": "500 Northridge", "role": "Access
 # Parse JSON data
 deviceData = json.loads(deviceJSON)
 
+# Extract each interface from the interfaces dictionary
 for interface in deviceData["interfaces"]["interface"]:
+    # Extract name of key (interface name) from interface dictionary
     for int_name in interface:
-#        print(f"key: {int_name}, value: {interface[int_name]}")
+        # Convert IPv4 string to ipaddress object
         ip = ipaddress.IPv4Address(interface[int_name]["ipv4"])
-#        print(ip)
+
+        # Use ipaddress module's is_private check to determine if the IP is in RFC1918 space
         if ip.is_private:
-            print(f"{int_name} has an IP address of {ip} is not a Private Address.")
-        else:
             print(f"{int_name} has an IP address of {ip} and is a Private Address.")
+        else:
+            print(f"{int_name} has an IP address of {ip} and is not a Private Address.")
