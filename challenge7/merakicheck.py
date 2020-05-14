@@ -13,12 +13,14 @@ myWebexToken = "" #you will need to put your personal token here
 baseurl = "https://dashboard.meraki.com/api/v0/networks/"
 
 payload = {}
-headers = {} #you will need to look to the meraki_api_key
+headers = {'X-Cisco-Meraki-API-Key': meraki_api_key} #you will need to look to the meraki_api_key
 
-url = baseurl  #finish the url!
+url = baseurl + mynetwork  #finish the url!
 
-response = requests #complete the api call using the requests library
+response = requests.get(url, headers = headers) #complete the api call using the requests library
 
 myresponse = response.json()
+
+print(myresponse)
 
 
