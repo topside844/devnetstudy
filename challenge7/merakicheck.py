@@ -49,3 +49,6 @@ print(f"Devices that will need to be manually checked:")
 
 for device in bad_devices:
     print(f"Serial#: {device['serial']}, Model#: {device['model']}")
+
+wx_api = WebexTeamsAPI(access_token=myWebexToken)
+wx_api.messages.create(WebexRoomID, text="Report Completed!")
