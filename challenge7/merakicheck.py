@@ -58,4 +58,4 @@ print(f"Total Cameras that meet standard: {mvcount}")
 print(f"Devices that will need to be manually checked:")
 
 for device in bad_devices:
-    print("Serial#: " + device['serial'] + ", Model#:" + device['model'])
+    print(f"Serial#: {device['serial']}, Model#: {device['model']}")
