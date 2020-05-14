@@ -30,26 +30,16 @@ for device in myresponse:
     firmware = firmware.replace('-', '.')
     device_type = device['model'][:2]
 
-    if device_type == "MS":
-        if firmware == msversion:
-            mscount += 1
-        else:
-            bad_devices.append(device)
-    elif device_type == "MR":
-        if firmware == mrversion:
-            mrcount += 1
-        else:
-            bad_devices.append(device)
-    elif device_type == "MX":
-        if firmware == mxversion:
-            mxcount += 1
-        else:
-            bad_devices.append(device)
-    elif device_type == "MV":
-        if firmware == mvversion:
-            mvcount += 1
-        else:
-            bad_devices.append(device)
+    if device_type == "MS" and firmware == msversion:
+        mscount += 1
+    elif device_type == "MR" and firmware == mrversion:
+        mrcount += 1
+    elif device_type == "MX" and firmware == mxversion:
+        mxcount += 1
+    elif device_type == "MV" and firmware == mvversion:
+        mvcount += 1
+    else:
+        bad_devices.append(device)
 
 print(f"Total switches that meet standard: {mscount}")
 print(f"Total APs that meet standard: {mrcount}")
