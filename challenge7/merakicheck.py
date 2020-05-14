@@ -1,6 +1,7 @@
+import re
 from webexteamssdk import WebexTeamsAPI
 import requests
-import re
+
 
 meraki_api_key = '093b24e85df15a3e66f1fc359f4c48493eaa1b73'
 mynetwork = 'L_646829496481100388'
@@ -21,33 +22,30 @@ headers = {'X-Cisco-Meraki-API-Key': meraki_api_key} #you will need to look to t
 
 url = baseurl + mynetwork + "/devices"  #finish the url!
 
-response = requests.get(url, headers = headers) #complete the api call using the requests library
-
+response = requests.get(url, headers=headers) #complete the api call using the requests library
 myresponse = response.json()
-
-
 
 for device in myresponse:
     firmware = re.sub('\D+(.*)', '\\1', device['firmware'])
     firmware = firmware.replace('-', '.')
     device_type = device['model'][:2]
-    
-    if (device_type == "MS"):
+
+    if device_type == "MS":
         if firmware == msversion:
             mscount += 1
         else:
             bad_devices.append(device)
-    elif (device_type == "MR"):
+    elif device_type == "MR":
         if firmware == mrversion:
             mrcount += 1
         else:
             bad_devices.append(device)
-    elif (device_type == "MX"):
+    elif device_type == "MX":
         if firmware == mxversion:
             mxcount += 1
         else:
-            bad_devices.append(device)            
-    elif (device_type == "MV"):
+            bad_devices.append(device)
+    elif device_type == "MV":
         if firmware == mvversion:
             mvcount += 1
         else:
@@ -55,7 +53,7 @@ for device in myresponse:
 
 print(f"Total switches that meet standard: {mscount}")
 print(f"Total APs that meet standard: {mrcount}")
-print(f"Total Security Appliances that meet standard: {mxcount}")            
+print(f"Total Security Appliances that meet standard: {mxcount}")
 print(f"Total Cameras that meet standard: {mvcount}")
 print(f"Devices that will need to be manually checked:")
 
