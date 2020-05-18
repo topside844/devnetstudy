@@ -1,9 +1,16 @@
 import constants
 from webexteamssdk import WebexTeamsAPI
 
+'''
+# constants.py
+BOT_TOKEN = ''
+DEMO_ROOM_NAME = '{YOUR_NAME}-DEVNET-TEST'
+INVITE_USERNAME = 'user@domain'
+'''
+
 teams_api = WebexTeamsAPI(access_token=constants.BOT_TOKEN)
 
-# Create a room (space) and name it "Dustin Melancon-DEVNET-TEST"
+# Create a room (space) and name it "{YOUR_NAME}-DEVNET-TEST"
 demo_room = teams_api.rooms.create(constants.DEMO_ROOM_NAME)
 
 # Invite your own Webex Teams user to the room you created.
