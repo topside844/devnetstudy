@@ -1,5 +1,5 @@
-import constants
 from webexteamssdk import WebexTeamsAPI
+import constants
 
 '''
 # constants.py
@@ -20,3 +20,6 @@ teams_api.memberships.create(demo_room.id, personEmail=constants.INVITE_USERNAME
 user_search = teams_api.people.list(email=constants.INVITE_USERNAME)
 for user in user_search:
     message = teams_api.messages.create(roomId=demo_room.id, text=f'Welcome {user.displayName}')
+
+# For extra credit, add some sophistication so your bot responds when mentioned in the room!
+
