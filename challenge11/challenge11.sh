@@ -2,7 +2,7 @@
 
 # Use an operating system environment variable to store your bearer token (i.e. WEBEX_TEAMS_ACCESS_TOKEN)
 # Use "curl" to retrieve your current status and save the result to a file (i.e. response.txt)
-curl -X GET -H "Authorization: Bearer $WEBEX_TEAMS_ACCESS_TOKEN" https://webexapis.com/v1/people/me > response.txt
+curl -s -X GET -H "Authorization: Bearer $WEBEX_TEAMS_ACCESS_TOKEN" https://webexapis.com/v1/people/me > response.txt
 
 # Strip the status out of the output.
 jq -r '.status' response.txt > status.txt
